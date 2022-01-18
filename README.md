@@ -23,7 +23,7 @@ The hmi_coolant binary was part of FIRST CTF 2021.
 │ │ │       │   │                  │  │       │    │
 │ │ └───────┘   │                  │  └───────┘    │
 │ ▼             │                  │               │
-│GDB            │                  │               │
+│GDB       flag1│                  │          flag2│
 └───────────────┘                  └───────────────┘	
 ```
 ```
